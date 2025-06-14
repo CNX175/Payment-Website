@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Enter Amount</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+  />
+  <style>
+    input,
+    textarea {
+      border-width: 0 0 1px 0;
+      border-color: #999999;
+      outline: none;
+      background-color: transparent;
+      color: white;
+    }
+    input:focus,
+    textarea:focus {
+      border-color: #60a5fa;
+    }
+  </style>
+</head>
+<body class="bg-black text-white font-sans min-h-screen flex flex-col px-4 py-6 max-w-md mx-auto">
+  <!-- Back button -->
+  <button
+    aria-label="Back"
+    class="w-10 h-10 rounded-full bg-black bg-opacity-60 flex items-center justify-center mb-6"
+    onclick="window.history.back()"
+  >
+    <i class="fas fa-arrow-left text-white text-lg"></i>
+  </button>
+
+  <!-- Title and PayID Section -->
+  <h1 class="text-xl font-extrabold leading-tight mb-1">Pay</h1>
+  <div class="text-base font-normal mb-1" style="color: #b3b3b3;">
+    <span id="payidNameLabel">PayID Name</span>
+  </div>
+  <div class="text-xl font-normal mb-6">
+    <span>+61-<span id="mobileNumber">Mobile Number</span></span>
+    <span class="float-right flex items-center space-x-1 font-semibold text-white">
+    
+      <div class="font-semibold text-white text-base">PayID</div>
+      <div class="bg-white text-gray-900 rounded-md px-1.5 py-0.5 text-xs font-bold flex items-center">
+        <i class="fas fa-id-badge"></i>
+      </div>
+    </span>
+  </div>
+
+  <!-- From card -->
+  <div class="bg-gray-800 rounded-lg p-4 mb-6">
+    <div class="text-sm mb-2" style="color: #b3b3b3;">From</div>
+    <div class="flex items-center justify-between">
+      <div class="flex items-center space-x-3">
+        <div class="w-10 h-6 rounded-sm border border-gray-600 flex items-center justify-center bg-black">
+          <div class="w-5 h-3 bg-yellow-400 rounded-sm justify-right"></div>
+        </div>
+        <div>
+          <div class="font-semibold text-white text-base leading-tight">Smart Access</div>
+          <div class="text-gray-300 text-sm tracking-wide">061-574 1523 1590</div>
+        </div>
+      </div>
+      <div class="font-semibold text-white text-base">$423.94</div>
+    </div>
+  </div>
+
+  <!-- Amount input -->
+  <label for="amount" class="block mb-1 text-gray-400 text-sm">Amount</label>
+  <input
+    id="amount"
+    type="text"
+    placeholder=" "
+    class="w-full mb-6 text-white text-lg font-normal placeholder-transparent"
+    aria-label="Amount"
+  />
+
+  <!-- Description input -->
+  <label for="description" class="block mb-1 text-gray-400 text-sm">Description</label>
+  <textarea
+    id="description"
+    rows="1"
+    maxlength="280"
+    class="w-full mb-1 text-white text-base resize-none placeholder-transparent"
+    aria-label="Description"
+  ></textarea>
+  <div class="text-right text-gray-400 text-xs mb-6">0/280</div>
+
+  <!-- Reference optional -->
+  <label for="reference" class="block mb-1 text-white text-lg font-normal">Reference (optional)</label>
+  <input
+    id="reference"
+    type="text"
+    maxlength="35"
+    class="w-full mb-1 text-gray-400 text-sm font-normal placeholder-gray-400"
+    aria-label="Reference (optional)"
+  />
+  <div class="flex justify-between text-gray-400 text-xs mb-8">
+    <div>For business e.g. Invoice number</div>
+    <div>0/35</div>
+  </div>
+
+  <!-- Next button -->
+<button
+  id="nextBtn"
+  type="button"
+  class="w-full bg-yellow-400 text-black text-base font-normal py-3 rounded-md"
+>
+  Next
+</button>
+
+
+  <!-- JavaScript to inject PayID and Mobile Number -->
+  <!-- JavaScript to inject and save PayID, Mobile, Amount, Description -->
+<script>
+  window.onload = function () {
+    const payid = localStorage.getItem('payid') || 'PayID Name';
+    const mobile = localStorage.getItem('mobile') || 'Mobile Number';
+
+    document.getElementById('payidNameLabel').textContent = payid;
+    document.getElementById('mobileNumber').textContent = mobile;
+
+    // Get values from amount and description fields
+    const amountInput = document.getElementById('amount');
+    const descriptionInput = document.getElementById('description');
+
+    // Add event listener to Next button
+    const nextButton = document.getElementById('nextBtn'); // Add an ID to your button
+    nextButton.addEventListener('click', function () {
+      const amount = amountInput.value.trim();
+      const description = descriptionInput.value.trim();
+
+      if (amount.length > 0 && description.length > 0) {
+        localStorage.setItem('Amount', amount);
+        localStorage.setItem('Description', description);
+
+        window.location.href = 'page3.html';
+      } else {
+        alert('Please complete both Amount and Description fields before continuing.');
+      }
+    });
+  };
+</script>
+
+</body>
+</html>

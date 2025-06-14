@@ -1,0 +1,86 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Confirm Payment</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+  />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+  </style>
+</head>
+<body class="bg-black text-white font-sans min-h-screen flex flex-col px-4 py-6 max-w-md mx-auto">
+<main class="flex flex-col max-w-md w-full mx-auto">
+    <!-- Back button -->
+    <button
+       aria-label="Back"
+       class="w-10 h-10 rounded-full bg-black bg-opacity-60 flex items-center justify-center mb-6 self-start"
+       onclick="window.history.back()"
+       >
+       <i class="fas fa-arrow-left text-white text-lg"></i>
+    </button>
+
+    <h1 class="text-white text-[28px] font-semibold leading-[34px] mb-[40px]">Confirm payment</h1>
+
+    <section class="border-b border-gray-700 pb-6 mb-6">
+      <p class="text-white text-[18px] font-normal leading-[22px]">
+        Pay
+       <span id="amount" class="text-white-600 text-[18px] font-normal">Amount</span> 
+        to
+        <span id="payidNameLabel" class="text-white-600 text-[18px] font-normal">PayID Name</span>
+      </p>
+      <p class="text-gray-400 text-[14px] leading-[18px] mt-1">
+        +61-
+        <span id="mobileNumber" class="text-white-600 text-[18px] font-normal">Mobile Number</span>
+      </p>
+    </section>
+
+    <section class="border-b border-gray-700 pb-6 mb-6">
+      <p class="text-white font-semibold text-[14px] leading-[18px] mb-1">From</p>
+      <p class="text-white text-[18px] font-normal leading-[16px]">Smart Access</p>
+      <p class="text-white text-[18px] font-normal leading-[16px] mt-1">061-574 1523 1590</p>
+    </section>
+
+    <section class="border-b border-gray-700 pb-6 mb-6">
+      <p class="text-white font-semibold text-[14px] leading-[18px] mb-1">Description</p>
+      <div class="text-white text-[18px] font-normal leading-[px]">
+        <span id ="Description">Description</span>
+
+      </div>
+    </section>
+
+    <section class="flex items-start gap-3 text-gray-300 text-[14px] leading-[20px] mb-[56px]">
+      <i class="fas fa-info-circle text-blue-500 mt-[2px]"></i>
+      <p>Check details. Incorrect payments may not be recovered.</p>
+    </section>
+
+    <!-- Next button -->
+    <button
+       type="button"
+       class="w-full bg-yellow-400 text-black text-base font-normal py-3 rounded-md"
+       onclick="window.location.href='Page4.html';" 
+       >Pay Now
+    </button>
+ 
+   <script>
+  window.onload = function () {
+    const payid = localStorage.getItem('payid') || 'PayID Name';
+    const mobile = localStorage.getItem('mobile') || 'Mobile Number';
+    const amount = localStorage.getItem('Amount') || 'Amount';
+    const description = localStorage.getItem('Description') || 'Description';
+
+    document.getElementById('amount').textContent = amount;
+    document.getElementById('payidNameLabel').textContent = payid;
+    document.getElementById('mobileNumber').textContent = mobile;
+    document.getElementById('Description').textContent = description;
+  };
+</script>
+ </main>
+</body>
+</html>
